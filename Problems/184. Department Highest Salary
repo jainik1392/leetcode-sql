@@ -1,0 +1,5 @@
+SELECT b.Name as Department,a.Name as Employee,a.Salary
+FROM (SELECT * 
+      FROM Employee 
+      WHERE (DepartmentId, Salary) in (SELECT DepartmentId,max(Salary) FROM EMPLOYEE GROUP BY    DepartmentId) ) a 
+INNER JOIN Department b ON a.DepartmentId=b.Id
