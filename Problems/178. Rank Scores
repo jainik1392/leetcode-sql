@@ -1,0 +1,7 @@
+SELECT A.Score,B.Rank
+FROM Scores A 
+LEFT JOIN (SELECT A.SCORE,@n :=@n+1 as Rank
+           FROM (SELECT distinct score from scores) A, (select @n:=0) m
+           order by score desc) B
+ON A.Score=B.Score
+ORDER BY A.SCORE DESC
